@@ -92,7 +92,8 @@
                 {% endif %}
                 <div class="turf-info">
                     <h3>{{ turf.turf_name }}</h3>
-                    <p> {{ turf.city.name }}, {{ turf.state.name }}</p>
+                    <p>{{ turf.category.category_name }}</p>
+                    <p>{{ turf.address }}</p>
                     <p> ₹{{ turf.price_per_hour }}/hr</p>
                     <a href="{% url 'booking_page' turf.id %}" class="btn">Book Now</a>
                 </div>

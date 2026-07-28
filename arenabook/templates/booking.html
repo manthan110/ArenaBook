@@ -23,7 +23,10 @@
     <div class="card">
         <div class="header-info">
             <h1>Book {{ turf.turf_name }}</h1>
-            <p> {{ turf.city.name }} |  ₹{{ turf.price_per_hour }}/hr</p>
+            <span style="display: inline-block; background-color: #ecfdf5; color: #047857; padding: 4px 12px; border-radius: 15px; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.75rem;">
+        {{ turf.category.category_name }}
+            </span>
+            <p> {{ turf.address }}, {{ turf.city.name }} |  ₹{{ turf.price_per_hour }}/hr</p>
         </div>
         
         <form action="" method="POST">
