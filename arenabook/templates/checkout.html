@@ -28,8 +28,8 @@
         <!-- Summary Card -->
         <div class="card" style="background-color: #f8fafc; border: 1px solid #e2e8f0;">
             <h2 style="color: #334155; border-color: #e2e8f0;">Booking Summary</h2>
-            <div class="summary-item"><span>Venue</span> <strong>{{ booking.turf.turf_name }} ({{ booking.turf.category.category_name }})</strong></div>
-            <div class="summary-item"><span>Location</span> <strong style="text-align: right; max-width: 60%;">{{ booking.turf.address }}, {{ booking.turf.city.name }}</strong></div>
+            <div class="summary-item"><span>Venue</span> <strong>{{ booking.turf.venue.name }} - {{ booking.turf.turf_name }} ({{ booking.turf.category.category_name }})</strong></div>
+            <div class="summary-item"><span>Location</span> <strong style="text-align: right; max-width: 60%;">{{ booking.turf.venue.address }}, {{ booking.turf.venue.city.name }}</strong></div>
             <div class="summary-item"><span>Date</span> <strong>{{ booking.booking_date }}</strong></div>
             <div class="summary-item"><span>Time</span> <strong>{{ booking.start_time }} - {{ booking.end_time }}</strong></div>
             <div class="summary-item total-row"><span>Total Amount</span> <span>₹{{ booking.total_amount }}</span></div>

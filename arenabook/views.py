@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from datetime import datetime
 from .models import Turf, Booking, AppUser, Payment
+from django.core.exceptions import ValidationError
 
 def home(request):
     turfs = Turf.objects.all()
@@ -84,17 +85,25 @@ def booking_page(request, turf_id):
 
         user = AppUser.objects.get(id=request.session['user_id'])
 
-        new_booking = Booking.objects.create(
-            user=user,
-            turf=turf,
-            booking_date=booking_date,
-            start_time=start_time_str,
-            end_time=end_time_str,
-            total_amount=total_amount,
-            status='pending' 
-        )
+        try:
+            new_booking = Booking(
+                user=user,
+                turf=turf,
+                booking_date=booking_date,
+                start_time=start_time_str,
+                end_time=end_time_str,
+                total_amount=total_amount,
+                status='pending'
+            )
+            
+            new_booking.full_clean() 
+            new_booking.save()      
 
-        return redirect('checkout_page', booking_id=new_booking.id)
+            return redirect('checkout_page', booking_id=new_booking.id)
+
+        except ValidationError as e:
+            for msg in e.messages:
+                messages.error(request, msg)
 
     return render(request, 'booking.html', {'turf': turf})
 

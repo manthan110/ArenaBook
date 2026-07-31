@@ -84,24 +84,25 @@
     <div class="container">
         <div class="turf-grid" id="turfGrid">
             {% for turf in turfs %}
-            <div class="turf-card" data-name="{{ turf.turf_name|lower }}" data-city="{{ turf.city.name|lower }}">
-                {% if turf.image %}
-                    <img src="{{ turf.image.url }}" alt="{{ turf.turf_name }}" class="turf-image">
-                {% else %}
-                    <div class="turf-image" style="display:flex; align-items:center; justify-content:center; color:#9ca3af; font-weight: 600;">No Image Available</div>
-                {% endif %}
-                <div class="turf-info">
-                    <h3>{{ turf.turf_name }}</h3>
-                    <p>{{ turf.category.category_name }}</p>
-                    <p>{{ turf.address }}</p>
-                    <p> ₹{{ turf.price_per_hour }}/hr</p>
-                    <a href="{% url 'booking_page' turf.id %}" class="btn">Book Now</a>
+                <div class="turf-card" data-name="{{ turf.venue.name|lower }} {{ turf.turf_name|lower }}" data-city="{{ turf.venue.city.name|lower }}">
+                    {% if turf.venue.image %}
+                        <img src="{{ turf.venue.image.url }}" alt="{{ turf.venue.name }}" class="turf-image">
+                    {% else %}
+                        <div class="turf-image" style="display:flex; align-items:center; justify-content:center; color:#9ca3af; font-weight: 600;">No Image</div>
+                    {% endif %}
+                    <div class="turf-info">
+                        <h3>{{ turf.venue.name }}</h3>
+                        <p style="margin-bottom: 0.25rem;"><strong>{{ turf.turf_name }}</strong> | {{ turf.category.category_name }}</p>
+                        <p>{{ turf.venue.address }}</p>
+                        <p>{{ turf.venue.city.name }}, {{ turf.venue.state.name }}</p>
+                        <p>₹{{ turf.price_per_hour }}/hr</p>
+                        <a href="{% url 'booking_page' turf.id %}" class="btn">Book Now</a>
+                    </div>
                 </div>
-            </div>
             {% empty %}
-            <div style="grid-column: 1 / -1; text-align: center; padding: 3rem; color: #6b7280;">
-                <h3>No turfs available at the moment.</h3>
-            </div>
+                <div style="grid-column: 1 / -1; text-align: center; padding: 3rem; color: #6b7280;">
+                    <h3>No turfs available at the moment.</h3>
+                </div>
             {% endfor %}
         </div>
     </div>

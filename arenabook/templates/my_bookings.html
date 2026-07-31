@@ -47,14 +47,14 @@
                     {% for booking in bookings %}
                     <tr>
                         <td>
-                        <strong style="color: #1f2937; display: block; margin-bottom: 4px;">{{ booking.turf.turf_name }}</strong>
-                        <span style="background-color: #ecfdf5; color: #047857; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600;">
-                            {{ booking.turf.category.category_name }}
-                        </span>
-                        <div style="color: #6b7280; font-size: 0.85em; margin-top: 6px;">
-                            {{ booking.turf.address }}, {{ booking.turf.city.name }}
-                        </div>
-                    </td>
+                            <strong style="color: #1f2937; display: block; margin-bottom: 4px;">{{ booking.turf.venue.name }} - {{ booking.turf.turf_name }}</strong>
+                            <span style="background-color: #ecfdf5; color: #047857; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600;">
+                                {{ booking.turf.category.category_name }}
+                            </span>
+                            <div style="color: #6b7280; font-size: 0.85rem; margin-top: 6px;">
+                                {{ booking.turf.venue.address }}, {{ booking.turf.venue.city.name }}
+                            </div>
+                        </td>
                         <td>
                             <div style="font-weight: 600;">{{ booking.booking_date }}</div>
                             <div style="color: #6b7280; font-size: 0.9em;">{{ booking.start_time }} - {{ booking.end_time }}</div>

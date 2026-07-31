@@ -21,13 +21,25 @@
 </head>
 <body>
     <div class="card">
-        <div class="header-info">
-            <h1>Book {{ turf.turf_name }}</h1>
-            <span style="display: inline-block; background-color: #ecfdf5; color: #047857; padding: 4px 12px; border-radius: 15px; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.75rem;">
-        {{ turf.category.category_name }}
-            </span>
-            <p> {{ turf.address }}, {{ turf.city.name }} |  ₹{{ turf.price_per_hour }}/hr</p>
+    <div class="header-info">
+        <h1>Book {{ turf.turf_name }} at {{ turf.venue.name }}</h1>
+        <span style="display: inline-block; background-color: #ecfdf5; color: #047857; padding: 4px 12px; border-radius: 15px; font-size: 0.9rem;">
+            {{ turf.category.category_name }}
+        </span>
+        <p>{{ turf.venue.address }}, {{ turf.venue.city.name }} | ₹{{ turf.price_per_hour }}/hr</p>
+    </div>
+
+    {% if messages %}
+        <div style="margin-bottom: 1.5rem;">
+            {% for message in messages %}
+                <div style="padding: 10px; border-radius: 5px; margin-bottom: 5px; {% if message.tags == 'error' %}background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb;{% else %}background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb;{% endif %}">
+                    {{ message }}
+                </div>
+            {% endfor %}
         </div>
+    {% endif %}
+
+    <form action="" method="POST">
         
         <form action="" method="POST">
             {% csrf_token %} 
